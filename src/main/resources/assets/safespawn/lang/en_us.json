@@ -1,0 +1,13 @@
+{
+  "item.minecraft.potion.effect.mob_attack_protection": "Mob Attack Protection Potion",
+  "item.minecraft.splash_potion.effect.mob_attack_protection": "Splash Potion of Mob Attack Protection",
+  "item.minecraft.lingering_potion.effect.mob_attack_protection": "Lingering Potion of Mob Attack Protection",
+  "item.minecraft.tipped_arrow.effect.mob_attack_protection": "Tipped Arrow of Mob Attack Protection",
+
+  "item.minecraft.potion.effect.long_mob_attack_protection": "Long Mob Attack Protection Potion",
+  "item.minecraft.splash_potion.effect.long_mob_attack_protection": "Splash Potion of Long Mob Attack Protection",
+  "item.minecraft.lingering_potion.effect.long_mob_attack_protection": "Lingering Potion of Long Mob Attack Protection",
+  "item.minecraft.tipped_arrow.effect.long_mob_attack_protection": "Tipped Arrow of Long Mob Attack Protection",
+
+  "effect.safespawn.mob_attack_protection": "Mob Attack Protection"
+}
