@@ -1,6 +1,6 @@
-package eu.netleak.safespawn.event;
+package eu.netleak.spawnguard.event;
 
-import eu.netleak.safespawn.potion.ModPotions;
+import eu.netleak.spawnguard.potion.ModPotions;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;

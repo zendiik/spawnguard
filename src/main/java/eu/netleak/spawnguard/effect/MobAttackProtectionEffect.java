@@ -1,10 +1,8 @@
-package eu.netleak.safespawn.effect;
+package eu.netleak.spawnguard.effect;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
-
-import javax.annotation.ParametersAreNonnullByDefault;
 
 public class MobAttackProtectionEffect extends MobEffect {
     protected MobAttackProtectionEffect(MobEffectCategory mobEffectCategory, int color) {

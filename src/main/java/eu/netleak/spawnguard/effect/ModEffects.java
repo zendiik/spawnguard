@@ -1,6 +1,6 @@
-package eu.netleak.safespawn.effect;
+package eu.netleak.spawnguard.effect;
 
-import eu.netleak.safespawn.SafeSpawn;
+import eu.netleak.spawnguard.SpawnGuard;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -11,7 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModEffects {
 
     public static final DeferredRegister<MobEffect> MOB_EFFECTS
-            = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, SafeSpawn.MOD_ID);
+            = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, SpawnGuard.MOD_ID);
 
     public static final RegistryObject<MobEffect> MOB_ATTACK_PROTECTION_EFFECT
             = MOB_EFFECTS.register("mob_attack_protection", () -> new MobAttackProtectionEffect(MobEffectCategory.BENEFICIAL, 0x98D98C));

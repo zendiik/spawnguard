@@ -1,8 +1,8 @@
-package eu.netleak.safespawn;
+package eu.netleak.spawnguard;
 
 import com.mojang.logging.LogUtils;
-import eu.netleak.safespawn.effect.ModEffects;
-import eu.netleak.safespawn.potion.ModPotions;
+import eu.netleak.spawnguard.effect.ModEffects;
+import eu.netleak.spawnguard.potion.ModPotions;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -15,13 +15,13 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
-@Mod(SafeSpawn.MOD_ID)
-public class SafeSpawn {
+@Mod(SpawnGuard.MOD_ID)
+public class SpawnGuard {
 
-    public static final String MOD_ID = "safespawn";
+    public static final String MOD_ID = "spawnguard";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public SafeSpawn() {
+    public SpawnGuard() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModEffects.register(modEventBus);

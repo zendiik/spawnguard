@@ -1,7 +1,7 @@
-package eu.netleak.safespawn.event;
+package eu.netleak.spawnguard.event;
 
-import eu.netleak.safespawn.SafeSpawn;
-import eu.netleak.safespawn.effect.ModEffects;
+import eu.netleak.spawnguard.SpawnGuard;
+import eu.netleak.spawnguard.effect.ModEffects;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -13,7 +13,7 @@ import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = SafeSpawn.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = SpawnGuard.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ModEvents {
 
     @SubscribeEvent

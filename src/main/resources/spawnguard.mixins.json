@@ -1,9 +1,9 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "eu.netleak.safespawn.mixin",
+  "package": "eu.netleak.spawnguard.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "safespawn.refmap.json",
+  "refmap": "spawnguard.refmap.json",
   "mixins": [
   ],
   "client": [
