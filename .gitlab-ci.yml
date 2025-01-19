@@ -44,8 +44,8 @@ release:
     description: 'Release $CI_COMMIT_TAG'
     assets:
       links:
-        - name: 'SpawnGuard-$CI_COMMIT_TAG.jar'
-          url: 'https://gitlab.zendovo.eu/netleak/SpawnGuard/-/jobs/artifacts/$CI_COMMIT_SHA/raw/build/libs/SpawnGuard-$CI_COMMIT_TAG.jar?job=build'
+        - name: 'spawnguard-$CI_COMMIT_TAG.jar'
+          url: 'https://gitlab.zendovo.eu/netleak/SpawnGuard/-/jobs/artifacts/$CI_COMMIT_SHA/raw/build/libs/spawnguard-$CI_COMMIT_TAG.jar?job=build'
 
 deploy:
   stage: deploy
