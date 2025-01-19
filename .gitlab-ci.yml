@@ -21,6 +21,9 @@ build:
     paths:
       - build/libs/*.jar
     expire_in: 1 week
+    when: on_success
+  only:
+    - master
 
 deploy:
   stage: deploy
@@ -41,3 +44,6 @@ deploy:
       - output/*.jar
       - output/*.html
     expire_in: 1 week
+    when: on_success
+    only:
+      - master
