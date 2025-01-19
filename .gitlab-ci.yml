@@ -23,7 +23,7 @@ build:
     expire_in: 1 week
 
 deploy:
-  stage: build
+  stage: deploy
   script:
     - mkdir libs
 #    - git remote set-url origin https://gitlab.zendovo.eu/netleak/safespawn
