@@ -3,7 +3,9 @@ package eu.netleak.safespawn.event;
 import eu.netleak.safespawn.SafeSpawn;
 import eu.netleak.safespawn.effect.ModEffects;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -36,10 +38,15 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void onTargetSet(LivingChangeTargetEvent event) {
-        if (event.getEntity() instanceof Mob mob
-                && event.getNewTarget() instanceof Player player
-                && player.hasEffect(ModEffects.MOB_ATTACK_PROTECTION_EFFECT.get())) {
-            mob.setTarget(null);
+        LivingEntity entity = event.getEntity();
+
+        if (entity instanceof Monster && event.getNewTarget() instanceof LivingEntity) {
+            LivingEntity target = event.getNewTarget();
+
+            if (target instanceof Player player && player.hasEffect(ModEffects.MOB_ATTACK_PROTECTION_EFFECT.get())) {
+                ((Monster) entity).setTarget(null);
+                event.setCanceled(true);
+            }
         }
     }
 
