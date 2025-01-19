@@ -3,6 +3,9 @@ image: eclipse-temurin:17
 stages:
   - build
 
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
 .build_java:
   cache:
     key: "gradleCache"
