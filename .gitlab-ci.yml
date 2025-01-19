@@ -23,7 +23,20 @@ build:
     expire_in: 1 week
     when: on_success
   only:
-    - master
+    - tags
+  except:
+    - branches
+
+release:
+  stage: deploy
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  rules:
+    - if: $CI_COMMIT_TAG
+  script:
+    - echo "Creating release for $CI_COMMIT_TAG"
+  release:
+    tag_name: '$CI_COMMIT_TAG'
+    description: 'Release $CI_COMMIT_TAG'
 
 deploy:
   stage: deploy
@@ -45,5 +58,7 @@ deploy:
       - output/*.html
     expire_in: 1 week
     when: on_success
-    only:
-      - master
+  only:
+    - tags
+  except:
+    - branches
