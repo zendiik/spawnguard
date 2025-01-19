@@ -45,7 +45,7 @@ release:
     assets:
       links:
         - name: 'safespawn-$CI_COMMIT_TAG.jar'
-          url: 'https://gitlab.zendovo.eu/netleak/safespawn/-/jobs/artifacts/$CI_COMMIT_SHA/raw/build/libs/SafeSpawn-$CI_COMMIT_TAG.jar?job=build'
+          url: 'https://gitlab.zendovo.eu/netleak/safespawn/-/jobs/artifacts/$CI_COMMIT_SHA/raw/build/libs/safespawn-$CI_COMMIT_TAG.jar?job=build'
 
 deploy:
   stage: deploy
