@@ -7,5 +7,5 @@ build:
     paths:
       - build/libs/*.jar
   only:
-    - main
+    - master
     - merge_requests
