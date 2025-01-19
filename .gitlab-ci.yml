@@ -52,7 +52,7 @@ deploy:
   script:
     - mkdir libs
 #    - git remote set-url origin https://gitlab.zendovo.eu/netleak/SpawnGuard
-#    - ./gradlew clean build makeChangelog publish curseforgeXXXXX -S -i --refresh-dependencies
+#    - ./gradlew clean build makeChangelog publish curseforge1183148 -S -i --refresh-dependencies
     # Export all variables, uncomment if you want a list of all variables at the end of the job
     # - export
   cache:
