@@ -23,17 +23,14 @@ public class ModEvents {
         ForgeConfigSpec.BooleanValue enableSpawnGuard = SpawnGuardConfig.ENABLE_SPAWN_GUARD;
         ForgeConfigSpec.IntValue mobAttackProtectionDuration = SpawnGuardConfig.MOB_ATTACK_PROTECTION_DURATION;
 
-        if (enableSpawnGuard.get() &&
-                !event.getLevel().isClientSide && event.getEntity() instanceof Player
-                && !event.getEntity().getPersistentData().getBoolean("GivenMobAttackProtectionEffect")) {
-            event.getEntity().getPersistentData().putBoolean("GivenMobAttackProtectionEffect", true);
-            ((Player) event.getEntity()).addEffect(new MobEffectInstance(
+        if (enableSpawnGuard.get() && !event.getLevel().isClientSide
+                && event.getEntity() instanceof Player player
+                && !player.getPersistentData().getBoolean("GivenMobAttackProtectionEffect")) {
+            player.getPersistentData().putBoolean("GivenMobAttackProtectionEffect", true);
+            player.addEffect(new MobEffectInstance(
                     ModEffects.MOB_ATTACK_PROTECTION_EFFECT.get(),
                     mobAttackProtectionDuration.get(),
-                    0,
-                    false,
-                    false,
-                    true
+                    0, false, false, true
             ));
         }
     }
