@@ -4,11 +4,9 @@ import eu.netleak.spawnguard.SpawnGuard;
 import eu.netleak.spawnguard.config.SpawnGuardConfig;
 import eu.netleak.spawnguard.effect.ModEffects;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
@@ -20,16 +18,13 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void onSpawn(EntityJoinLevelEvent event) {
-        ForgeConfigSpec.BooleanValue enableSpawnGuard = SpawnGuardConfig.ENABLE_SPAWN_GUARD;
-        ForgeConfigSpec.IntValue mobAttackProtectionDuration = SpawnGuardConfig.MOB_ATTACK_PROTECTION_DURATION;
-
-        if (enableSpawnGuard.get() && !event.getLevel().isClientSide
+        if (SpawnGuardConfig.ENABLE_SPAWN_GUARD.get() && !event.getLevel().isClientSide
                 && event.getEntity() instanceof Player player
                 && !player.getPersistentData().getBoolean("GivenMobAttackProtectionEffect")) {
             player.getPersistentData().putBoolean("GivenMobAttackProtectionEffect", true);
             player.addEffect(new MobEffectInstance(
                     ModEffects.MOB_ATTACK_PROTECTION_EFFECT.get(),
-                    mobAttackProtectionDuration.get(),
+                    SpawnGuardConfig.MOB_ATTACK_PROTECTION_DURATION.get(),
                     0, false, false, true
             ));
         }
@@ -48,15 +43,11 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void onTargetSet(LivingChangeTargetEvent event) {
-        LivingEntity entity = event.getEntity();
-
-        if (entity instanceof Monster && event.getNewTarget() instanceof LivingEntity) {
-            LivingEntity target = event.getNewTarget();
-
-            if (target instanceof Player player && player.hasEffect(ModEffects.MOB_ATTACK_PROTECTION_EFFECT.get())) {
-                ((Monster) entity).setTarget(null);
-                event.setCanceled(true);
-            }
+        if (event.getEntity() instanceof Monster monster
+                && event.getNewTarget() instanceof Player player
+                && player.hasEffect(ModEffects.MOB_ATTACK_PROTECTION_EFFECT.get())) {
+            monster.setTarget(null);
+            event.setCanceled(true);
         }
     }
 
