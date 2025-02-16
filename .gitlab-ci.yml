@@ -8,7 +8,7 @@ stages:
 
 build-sonar:
   stage: sonarqube
-  image: gradle:8.2.0-jdk17-jammy
+  image: gradle:8.8.0-jdk17-jammy
   cache:
     policy: pull-push
     key: "sonar-cache-$CI_COMMIT_REF_SLUG"
