@@ -12,6 +12,7 @@ buildscript {
 plugins {
     id 'eclipse'
     id 'idea'
+    id "org.sonarqube" version "6.0.1.5171"
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
@@ -205,4 +206,12 @@ tasks.named('jar', Jar).configure {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+
+sonar {
+    properties {
+        property "sonar.projectKey", "netleak_spawnguard_8aaafc69-9b40-45d3-8dc9-8798e0944784"
+        property "sonar.projectName", "SpawnGuard"
+        property "sonar.qualitygate.wait", true
+    }
 }
