@@ -1,27 +1,10 @@
 image: eclipse-temurin:17
 
 stages:
-  - sonarqube
   - build
+  - sonarqube
   - release
   - deploy
-
-build-sonar:
-  stage: sonarqube
-  image: gradle:8.8.0-jdk17-jammy
-  cache:
-    policy: pull-push
-    key: "sonar-cache-$CI_COMMIT_REF_SLUG"
-    paths:
-      - "${SONAR_USER_HOME}/cache"
-      - sonar-scanner/
-  script: gradle sonar
-  allow_failure: true
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
-    - if: $CI_COMMIT_BRANCH == 'master'
-    - if: $CI_COMMIT_BRANCH == 'main'
-    - if: $CI_COMMIT_BRANCH == 'develop'
 
 build:
   stage: build
@@ -44,6 +27,26 @@ build:
     - tags
   except:
     - branches
+
+build-sonar:
+  stage: sonarqube
+  image: gradle:8.8.0-jdk17-jammy
+  needs:
+    - job: build
+      artifacts: true
+  cache:
+    policy: pull-push
+    key: "sonar-cache-$CI_COMMIT_REF_SLUG"
+    paths:
+      - "${SONAR_USER_HOME}/cache"
+      - sonar-scanner/
+  script: gradle sonar
+  allow_failure: true
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH == 'master'
+    - if: $CI_COMMIT_BRANCH == 'main'
+    - if: $CI_COMMIT_BRANCH == 'develop'
 
 release:
   stage: release
