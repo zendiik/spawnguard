@@ -6,10 +6,6 @@ stages:
   - release
   - deploy
 
-before_script:
-  - chmod a+x ./gradlew
-  - chmod 770 gradlew
-
 sonarqube-check:
   stage: check
   image:
@@ -30,6 +26,9 @@ sonarqube-check:
 
 build:
   stage: build
+  before_script:
+    - chmod a+x ./gradlew
+    - chmod 770 gradlew
   script:
     - ./gradlew build -PmcVer="${MC_VER}" -PinfoGitCommit="${CI_COMMIT_SHA}" -PinfoGitBranch="${CI_COMMIT_BRANCH}" -PinfoBuildSource="GitLab CI (${CI_PIPELINE_ID})" --gradle-user-home cache/;
   cache:
