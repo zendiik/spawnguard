@@ -23,10 +23,6 @@ build:
       - build/libs/*.jar
     expire_in: 1 week
     when: on_success
-  only:
-    - tags
-  except:
-    - branches
 
 build-sonar:
   stage: sonarqube
