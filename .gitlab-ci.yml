@@ -6,15 +6,34 @@ stages:
   - release
   - deploy
 
-build:
+variables:
+  GRADLE_USER_HOME: "cache/"
+
+before_script:
+  - chmod a+x ./gradlew
+  - chmod 770 gradlew
+
+build_forge:
   stage: build
-  before_script:
-    - chmod a+x ./gradlew
-    - chmod 770 gradlew
   script:
-    - ./gradlew build -PmcVer="${MC_VER}" -PinfoGitCommit="${CI_COMMIT_SHA}" -PinfoGitBranch="${CI_COMMIT_BRANCH}" -PinfoBuildSource="GitLab CI (${CI_PIPELINE_ID})" --gradle-user-home cache/;
+    - ./gradlew :forge:build -PmcVer="${MC_VER}" -PinfoGitCommit="${CI_COMMIT_SHA}" -PinfoGitBranch="${CI_COMMIT_BRANCH}" -PinfoBuildSource="GitLab CI (${CI_PIPELINE_ID})" --gradle-user-home cache/;
   cache:
-    key: "$CI_COMMIT_REF_NAME"
+    key: "$CI_COMMIT_REF_NAME-forge"
+    policy: push
+    paths:
+      - build/libs
+  artifacts:
+    paths:
+      - build/
+    expire_in: 1 week
+    when: on_success
+
+build_fabric:
+  stage: build
+  script:
+    - ./gradlew :fabric:build -PmcVer="${MC_VER}" -PinfoGitCommit="${CI_COMMIT_SHA}" -PinfoGitBranch="${CI_COMMIT_BRANCH}" -PinfoBuildSource="GitLab CI (${CI_PIPELINE_ID})"
+  cache:
+    key: "$CI_COMMIT_REF_NAME-fabric"
     policy: push
     paths:
       - build/libs
@@ -28,7 +47,9 @@ build-sonar:
   stage: sonarqube
   image: gradle:8.8.0-jdk17-jammy
   needs:
-    - job: build
+    - job: build_forge
+      artifacts: true
+    - job: build_fabric
       artifacts: true
   cache:
     policy: pull-push
@@ -50,7 +71,9 @@ release:
   rules:
     - if: $CI_COMMIT_TAG
   needs:
-    - job: build
+    - job: build_forge
+      artifacts: true
+    - job: build_fabric
       artifacts: true
   script:
     - echo "Creating release for $CI_COMMIT_TAG"
@@ -60,8 +83,10 @@ release:
     description: 'Release $CI_COMMIT_TAG'
     assets:
       links:
-        - name: 'spawnguard-$CI_COMMIT_TAG.jar'
-          url: 'https://gitlab.zendovo.eu/netleak/SpawnGuard/-/jobs/artifacts/$CI_COMMIT_SHA/raw/build/libs/spawnguard-$CI_COMMIT_TAG.jar?job=build'
+        - name: 'spawnguard-forge-$CI_COMMIT_TAG.jar'
+          url: 'https://gitlab.zendovo.eu/netleak/SpawnGuard/-/jobs/artifacts/$CI_COMMIT_SHA/raw/build/libs/spawnguard-forge-$CI_COMMIT_TAG.jar?job=build'
+        - name: 'spawnguard-fabric-$CI_COMMIT_TAG.jar'
+          url: 'https://gitlab.zendovo.eu/netleak/SpawnGuard/-/jobs/artifacts/$CI_COMMIT_SHA/raw/build/libs/spawnguard-fabric-$CI_COMMIT_TAG.jar?job=build'
 
 deploy:
   stage: deploy
