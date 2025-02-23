@@ -24,19 +24,16 @@ before_script:
 
 build:
   stage: build
-  parallel:
-    matrix:
-      - MC_VER: ["1.20.1", "1.20.2", "1.20.4", "1.20.6"]
   script:
-    - ./gradlew clean -PmcVer="${MC_VER}" -PinfoGitCommit="${CI_COMMIT_SHA}" -PinfoGitBranch="${CI_COMMIT_BRANCH}" -PinfoBuildSource="GitLab CI (${CI_PIPELINE_ID})";
-    - ./gradlew build -PmcVer="${MC_VER}" -PinfoGitCommit="${CI_COMMIT_SHA}" -PinfoGitBranch="${CI_COMMIT_BRANCH}" -PinfoBuildSource="GitLab CI (${CI_PIPELINE_ID})";
+    - ./gradlew clean -PinfoGitCommit="${CI_COMMIT_SHA}" -PinfoGitBranch="${CI_COMMIT_BRANCH}" -PinfoBuildSource="GitLab CI (${CI_PIPELINE_ID})";
+    - ./gradlew build -PinfoGitCommit="${CI_COMMIT_SHA}" -PinfoGitBranch="${CI_COMMIT_BRANCH}" -PinfoBuildSource="GitLab CI (${CI_PIPELINE_ID})";
   cache:
     key: "$CI_COMMIT_REF_NAME-forge"
     policy: push
     paths:
       - build/libs
   artifacts:
-    name: "SpawnGuard_${MC_VER}-${CI_COMMIT_SHORT_SHA}-${CI_COMMIT_TIMESTAMP}"
+    name: "SpawnGuard_1.20.1-${CI_COMMIT_SHORT_SHA}-${CI_COMMIT_TIMESTAMP}"
     paths:
       - fabric/build/libs/*.jar
       - forge/build/libs/*.jar
