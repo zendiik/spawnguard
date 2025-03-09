@@ -15,7 +15,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     container:
-      image: eclipse-temurin:17
+      image: eclipse-temurin:21
     env:
       GRADLE_USER_HOME: cache/
     steps:
