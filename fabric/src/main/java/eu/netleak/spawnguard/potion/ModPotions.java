@@ -2,6 +2,7 @@ package eu.netleak.spawnguard.potion;
 
 import eu.netleak.spawnguard.Constants;
 import eu.netleak.spawnguard.effect.ModEffects;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -10,24 +11,18 @@ import net.minecraft.world.item.alchemy.Potion;
 
 public class ModPotions {
 
-    public static final Potion MOB_ATTACK_PROTECTION_POTION
-            = new Potion(new MobEffectInstance(ModEffects.MOB_ATTACK_PROTECTION_EFFECT, 3600, 0));
+    public static final Holder<Potion> MOB_ATTACK_PROTECTION_POTION
+            = registerPotion("mob_attack_protection", new Potion(new MobEffectInstance(ModEffects.MOB_ATTACK_PROTECTION_EFFECT, 3600, 0)));
 
-    public static final Potion LONG_MOB_ATTACK_PROTECTION_POTION
-            = new Potion(new MobEffectInstance(ModEffects.MOB_ATTACK_PROTECTION_EFFECT, 9600, 0));
+    public static final Holder<Potion> LONG_MOB_ATTACK_PROTECTION_POTION
+            = registerPotion("long_mob_attack_protection", new Potion(new MobEffectInstance(ModEffects.MOB_ATTACK_PROTECTION_EFFECT, 9600, 0)));
+
+    private static Holder<Potion> registerPotion(String name, Potion potion) {
+        return Registry.registerForHolder(BuiltInRegistries.POTION, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), potion);
+    }
 
     public static void register() {
-        Registry.register(
-                BuiltInRegistries.POTION,
-                new ResourceLocation(Constants.MOD_ID, "mob_attack_protection"),
-                MOB_ATTACK_PROTECTION_POTION
-        );
-
-        Registry.register(
-                BuiltInRegistries.POTION,
-                new ResourceLocation(Constants.MOD_ID, "long_mob_attack_protection"),
-                LONG_MOB_ATTACK_PROTECTION_POTION
-        );
+        Constants.LOG.info("Registering potions");
     }
 
 }

@@ -16,8 +16,8 @@ public class ModEntityEvents {
             if (SpawnGuard.CONFIG.enableSpawnGuard()
                     && entity instanceof Player player
                     && player instanceof PlayerPersistentData persistentData
-                    && !persistentData.hasGivenMobAttackProtectionEffect()) {
-                persistentData.setGivenMobAttackProtectionEffect(true);
+                    && !persistentData.spawnGuard$hasGivenMobAttackProtectionEffect()) {
+                persistentData.spawnGuard$setGivenMobAttackProtectionEffect(true);
 
                 player.addEffect(new MobEffectInstance(
                         ModEffects.MOB_ATTACK_PROTECTION_EFFECT,
