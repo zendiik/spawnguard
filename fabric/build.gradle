@@ -10,7 +10,10 @@ repositories {
 
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings loom.officialMojangMappings()
+    mappings loom.layered {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${parchment_minecraft}:${parchment_version}@zip")
+    }
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 
@@ -18,16 +21,16 @@ dependencies {
     include "io.wispforest:owo-sentinel:${project.owo_version}"
     annotationProcessor modImplementation("io.wispforest:owo-lib:${project.owo_version}")
 
-    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
-    implementation project(":common")
+    modImplementation "curse.maven:modmenu-${project.modmenu_id}:${project.modmenu_version}"
+    modImplementation "curse.maven:jei-${project.jei_id}:${project.jei_fabric_version}"
 
-    modImplementation "curse.maven:modmenu-308702:5162837"
-    modImplementation "curse.maven:jei-238222:6075246"
+    testImplementation "net.fabricmc:fabric-loader-junit:${project.fabric_loader_version}"
 }
 
 loom {
-    if (project(":common").file("src/main/resources/${mod_id}.accesswidener").exists()) {
-        accessWidenerPath.set(project(":common").file("src/main/resources/${mod_id}.accesswidener"))
+    def aw = project(':common').file("src/main/resources/${mod_id}.accesswidener")
+    if (aw.exists()) {
+        accessWidenerPath.set(aw)
     }
     mixin {
         defaultRefmapName.set("${mod_id}.refmap.json")
@@ -35,15 +38,19 @@ loom {
     runs {
         client {
             client()
-            setConfigName("Fabric Client")
+            setConfigName('Fabric Client')
             ideConfigGenerated(true)
-            runDir("run")
+            runDir('runs/client')
         }
         server {
             server()
-            setConfigName("Fabric Server")
+            setConfigName('Fabric Server')
             ideConfigGenerated(true)
-            runDir("run")
+            runDir('runs/server')
         }
     }
+}
+
+test {
+    useJUnitPlatform()
 }

@@ -2,8 +2,8 @@ package eu.netleak.spawnguard.data;
 
 public interface PlayerPersistentData {
 
-    boolean hasGivenMobAttackProtectionEffect();
+    boolean spawnGuard$hasGivenMobAttackProtectionEffect();
 
-    void setGivenMobAttackProtectionEffect(boolean value);
+    void spawnGuard$setGivenMobAttackProtectionEffect(boolean value);
 
 }

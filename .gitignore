@@ -20,4 +20,17 @@ build
 
 # other
 eclipse
-run
+
+common/build
+
+fabric/build/
+fabric/run/
+fabric/runs/
+
+forge/build/
+forge/run/
+forge/runs/
+
+neoforge/build/
+neoforge/run/
+neoforge/runs/

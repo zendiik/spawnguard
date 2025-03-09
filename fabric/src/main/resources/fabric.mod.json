@@ -8,7 +8,7 @@
         "${mod_author}"
     ],
     "contact": {
-        "sources": "https://gitlab.zendovo.eu/netleak/spawnguard"
+        "sources": "https://github.com/zendiik/spawnguard"
     },
     "license": "${license}",
     "icon": "${mod_id}.png",
