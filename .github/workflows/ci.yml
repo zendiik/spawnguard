@@ -21,8 +21,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
 
       - name: Nastavení spustitelných práv pro gradlew
         run: |
@@ -62,8 +60,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
 
       - name: Cache Sonar scanner
         uses: actions/cache@v4
@@ -86,8 +82,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
 
       - name: Stažení build artefaktů
         uses: actions/download-artifact@v4
