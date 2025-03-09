@@ -1,0 +1,139 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+      - main
+      - develop
+    tags:
+      - '*'
+  pull_request:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    container:
+      image: eclipse-temurin:17
+    env:
+      GRADLE_USER_HOME: cache/
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Nastavení spustitelných práv pro gradlew
+        run: |
+          chmod a+x ./gradlew
+          chmod 770 gradlew
+
+      - name: Cache Gradle složek
+        uses: actions/cache@v3
+        with:
+          path: |
+            .gradle
+            cache/
+          key: gradleCache-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle/wrapper/gradle-wrapper.properties') }}
+
+      - name: Build projektu
+        run: |
+          ./gradlew clean -PinfoGitCommit=${GITHUB_SHA} -PinfoGitBranch=${GITHUB_REF} -PinfoBuildSource="GitHub Actions ($GITHUB_RUN_ID)"
+          ./gradlew build -PinfoGitCommit=${GITHUB_SHA} -PinfoGitBranch=${GITHUB_REF} -PinfoBuildSource="GitHub Actions ($GITHUB_RUN_ID)"
+
+      - name: Upload build artefaktů
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: |
+            fabric/build/libs/*.jar
+            forge/build/libs/*.jar
+            neoforge/build/libs/*.jar
+
+  sonar:
+    name: SonarQube Analysis
+    runs-on: ubuntu-latest
+    container:
+      image: gradle:8.8.0-jdk17-jammy
+    needs: build
+    # Spouští se pro pull requesty nebo pro hlavní větve
+    if: github.event_name == 'pull_request' || startsWith(github.ref, 'refs/heads/master') || startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/develop')
+    env:
+      SONAR_USER_HOME: ${{ runner.temp }}/sonar
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Cache Sonar scanner
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ env.SONAR_USER_HOME }}/cache
+            sonar-scanner/
+          key: sonar-cache-${{ github.ref_name }}
+
+      - name: Spuštění SonarQube analýzy
+        run: gradle sonar
+        continue-on-error: true
+
+  release:
+    name: Vytvoření releasu
+    runs-on: ubuntu-latest
+    needs: build
+    # Tento job se spustí pouze při pushnutí tagu
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Stažení build artefaktů
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+
+      - name: Vytvoření GitHub releasu
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          body: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Fabric artefaktu
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: fabric/build/libs/spawnguard-fabric-${{ github.ref_name }}.jar
+          asset_name: spawnguard-fabric-${{ github.ref_name }}.jar
+          asset_content_type: application/java-archive
+
+      - name: Upload Forge artefaktu
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: forge/build/libs/spawnguard-forge-${{ github.ref_name }}.jar
+          asset_name: spawnguard-forge-${{ github.ref_name }}.jar
+          asset_content_type: application/java-archive
+
+      - name: Upload NeoForge artefaktu
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: neoforge/build/libs/spawnguard-neoforge-${{ github.ref_name }}.jar
+          asset_name: spawnguard-neoforge-${{ github.ref_name }}.jar
+          asset_content_type: application/java-archive
