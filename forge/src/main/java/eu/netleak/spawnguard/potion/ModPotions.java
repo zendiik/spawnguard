@@ -16,11 +16,11 @@ public class ModPotions {
 
     public static final RegistryObject<Potion> MOB_ATTACK_PROTECTION_POTION
             = POTIONS.register("mob_attack_protection",
-            () -> new Potion(new MobEffectInstance(ModEffects.MOB_ATTACK_PROTECTION_EFFECT.get(), 3600, 0)));
+            () -> new Potion(new MobEffectInstance(ModEffects.MOB_ATTACK_PROTECTION_EFFECT.getHolder().get(), 3600, 0)));
 
     public static final RegistryObject<Potion> LONG_MOB_ATTACK_PROTECTION_POTION
             = POTIONS.register("long_mob_attack_protection",
-            () -> new Potion(new MobEffectInstance(ModEffects.MOB_ATTACK_PROTECTION_EFFECT.get(), 9600, 0)));
+            () -> new Potion(new MobEffectInstance(ModEffects.MOB_ATTACK_PROTECTION_EFFECT.getHolder().get(), 9600, 0)));
 
     public static void register(IEventBus eventBus) {
         POTIONS.register(eventBus);
