@@ -20,7 +20,7 @@ jobs:
       GRADLE_USER_HOME: cache/
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
@@ -30,7 +30,7 @@ jobs:
           chmod 770 gradlew
 
       - name: Cache Gradle složek
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             .gradle
@@ -43,7 +43,7 @@ jobs:
           ./gradlew build -PinfoGitCommit=${GITHUB_SHA} -PinfoGitBranch=${GITHUB_REF} -PinfoBuildSource="GitHub Actions ($GITHUB_RUN_ID)"
 
       - name: Upload build artefaktů
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: |
@@ -59,22 +59,17 @@ jobs:
     needs: build
     # Spouští se pro pull requesty nebo pro hlavní větve
     if: github.event_name == 'pull_request' || startsWith(github.ref, 'refs/heads/master') || startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/develop')
-    env:
-      SONAR_USER_HOME: ${{ runner.temp }}/sonar
     steps:
-      - name: Dump runner context
-        env:
-          RUNNER_CONTEXT: ${{ toJson(runner) }}
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
       - name: Cache Sonar scanner
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
-            ${{ env.SONAR_USER_HOME }}/cache
+            ${{ runner.temp }}/sonar/cache
             sonar-scanner/
           key: sonar-cache-${{ github.ref_name }}
 
@@ -90,12 +85,12 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/')
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
       - name: Stažení build artefaktů
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifacts
 
