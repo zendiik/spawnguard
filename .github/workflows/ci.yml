@@ -33,7 +33,7 @@ jobs:
           path: |
             .gradle
             cache/
-          key: gradleCache-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle/wrapper/gradle-wrapper.properties') }}
+          key: gradleCache-${{ runner.os }}-${{ hashFiles('/.gradle', '/gradle/wrapper/gradle-wrapper.properties') }}
 
       - name: Build projektu
         run: |
