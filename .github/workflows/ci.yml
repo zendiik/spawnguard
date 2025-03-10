@@ -58,7 +58,7 @@ jobs:
     name: SonarQube Analysis
     runs-on: ubuntu-latest
     container:
-      image: gradle:8.12-jdk17-jammy
+      image: gradle:8.12-jdk21
     needs: build
     steps:
       - name: Checkout repository
