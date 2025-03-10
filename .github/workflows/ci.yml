@@ -48,6 +48,8 @@ jobs:
             fabric/build/libs/*.jar
             forge/build/libs/*.jar
             neoforge/build/libs/*.jar
+            !**/build/libs/*-sources.jar
+            !**/build/libs/*-javadoc.jar
 
   sonar:
     name: SonarQube Analysis
