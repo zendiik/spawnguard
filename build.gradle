@@ -6,7 +6,7 @@ plugins {
 
 sonar {
     properties {
-        property "sonar.projectKey", "netleak_spawnguard_8aaafc69-9b40-45d3-8dc9-8798e0944784"
+        property "sonar.projectKey", "zendiik_spawnguard_6253e018-5e9b-4fe6-8c01-0113f89d41ca"
         property "sonar.projectName", "SpawnGuard"
         property "sonar.qualitygate.wait", true
         property "sonar.sources", "src/main/java"
