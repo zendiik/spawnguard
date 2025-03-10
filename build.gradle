@@ -7,10 +7,10 @@ plugins {
 sonar {
     properties {
         property "sonar.projectKey", "zendiik_spawnguard_6253e018-5e9b-4fe6-8c01-0113f89d41ca"
-        property "sonar.projectName", "SpawnGuard"
+        property "sonar.projectName", "spawnguard"
         property "sonar.qualitygate.wait", true
         property "sonar.sources", "src/main/java"
-        property "sonar.java.binaries", "fabric/build/classes/java/main,forge/build/classes/java/main"
-        property "sonar.java.libraries", "fabric/build/libs,forge/build/libs"
+        property "sonar.java.binaries", "fabric/build/classes/java/main,forge/build/classes/java/main,neoforge/build/classes/java/main"
+        property "sonar.java.libraries", "fabric/build/libs,forge/build/libs,neoforge/build/libs"
     }
 }
