@@ -60,8 +60,6 @@ jobs:
     container:
       image: gradle:8.8.0-jdk17-jammy
     needs: build
-    # Spouští se pro pull requesty nebo pro hlavní větve
-    if: github.event_name == 'pull_request' || startsWith(github.ref, 'refs/heads/master') || startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/develop')
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
