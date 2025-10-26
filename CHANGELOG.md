@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.1] - 2025-02-19
+
+### Fixed
+
+- Fixed a bug where the mod would not load on fabric servers.
+
 ## [1.0.0] - 2025-02-19
 
 ### Added
