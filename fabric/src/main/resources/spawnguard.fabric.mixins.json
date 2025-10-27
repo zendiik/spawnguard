@@ -7,12 +7,12 @@
   "mixins": [
   ],
   "client": [
-    "LivingEntityMixin",
-    "MixinTitleScreen",
-    "MobMixin",
-    "PlayerPersistentDataMixin"
+    "MixinTitleScreen"
   ],
   "server": [
+    "LivingEntityMixin",
+    "MobMixin",
+    "PlayerPersistentDataMixin"
   ],
   "injectors": {
     "defaultRequire": 1
