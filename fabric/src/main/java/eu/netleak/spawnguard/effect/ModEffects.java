@@ -10,6 +10,10 @@ import net.minecraft.world.effect.MobEffectCategory;
 
 public class ModEffects {
 
+    private ModEffects() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     public static final Holder<MobEffect> MOB_ATTACK_PROTECTION_EFFECT = registerEffect("mob_attack_protection",
             new MobAttackProtectionEffect(MobEffectCategory.BENEFICIAL, 0x98D98C));
 

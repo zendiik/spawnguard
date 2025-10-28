@@ -13,6 +13,10 @@ import net.minecraft.world.entity.player.Player;
 
 public class ModEntityEvents {
 
+    private ModEntityEvents() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     public static void register() {
         ServerEntityEvents.ENTITY_LOAD.register((Entity entity, ServerLevel world) -> {
             if (SpawnGuard.CONFIG.enableSpawnGuard()

@@ -10,6 +10,10 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModEffects {
 
+    private ModEffects() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     public static final net.neoforged.neoforge.registries.DeferredRegister<MobEffect> MOB_EFFECTS =
             DeferredRegister.create(BuiltInRegistries.MOB_EFFECT, Constants.MOD_ID);
 

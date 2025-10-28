@@ -28,7 +28,7 @@ public class ModEvents {
                 && !player.getPersistentData().getBoolean("GivenMobAttackProtectionEffect")) {
             player.getPersistentData().putBoolean("GivenMobAttackProtectionEffect", true);
             player.addEffect(new MobEffectInstance(
-                    ModEffects.MOB_ATTACK_PROTECTION_EFFECT.getHolder().get(),
+                    ModEffects.MOB_ATTACK_PROTECTION_EFFECT.get(),
                     SpawnGuardConfig.MOB_ATTACK_PROTECTION_DURATION.get(),
                     0, false, false, true
             ));
@@ -38,7 +38,7 @@ public class ModEvents {
     @SubscribeEvent
     public static void onAttack(LivingAttackEvent event) {
         if (event.getEntity() instanceof Player player
-                && player.hasEffect(ModEffects.MOB_ATTACK_PROTECTION_EFFECT.getHolder().get())
+                && player.hasEffect(ModEffects.MOB_ATTACK_PROTECTION_EFFECT.get())
                 && (event.getSource().getEntity() instanceof Mob
                 || event.getSource() == player.damageSources().magic()
                 || event.getSource() == player.damageSources().wither())) {
@@ -50,7 +50,7 @@ public class ModEvents {
     public static void onTargetSet(LivingChangeTargetEvent event) {
         if (event.getEntity() instanceof Monster monster
                 && event.getNewTarget() instanceof Player player
-                && player.hasEffect(ModEffects.MOB_ATTACK_PROTECTION_EFFECT.getHolder().get())) {
+                && player.hasEffect(ModEffects.MOB_ATTACK_PROTECTION_EFFECT.get())) {
             monster.setTarget(null);
             event.setCanceled(true);
         }
@@ -60,8 +60,8 @@ public class ModEvents {
     public static void onBrewingRecipeRegister(BrewingRecipeRegisterEvent event) {
         PotionBrewing.Builder builder = event.getBuilder();
 
-        builder.addMix(Potions.WEAKNESS, Items.BLAZE_POWDER, ModPotions.MOB_ATTACK_PROTECTION_POTION.getHolder().get());
-        builder.addMix(ModPotions.MOB_ATTACK_PROTECTION_POTION.getHolder().get(), Items.REDSTONE, ModPotions.LONG_MOB_ATTACK_PROTECTION_POTION.getHolder().get());
+        builder.addMix(Potions.WEAKNESS, Items.BLAZE_POWDER, ModPotions.MOB_ATTACK_PROTECTION_POTION.get());
+        builder.addMix(ModPotions.MOB_ATTACK_PROTECTION_POTION.get(), Items.REDSTONE, ModPotions.LONG_MOB_ATTACK_PROTECTION_POTION.get());
     }
 
 }

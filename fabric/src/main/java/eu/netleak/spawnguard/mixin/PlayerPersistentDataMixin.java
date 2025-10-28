@@ -11,19 +11,21 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Player.class)
 public class PlayerPersistentDataMixin implements PlayerPersistentData {
+    @Unique
+    private static final String NBT_KEY_MOB_ATTACK_PROTECTION = "GivenMobAttackProtectionEffect";
 
     @Unique
     private boolean givenMobAttackProtectionEffect = false;
 
     @Inject(method = "addAdditionalSaveData", at = @At("HEAD"))
     private void onAddAdditionalSaveData(CompoundTag nbt, CallbackInfo ci) {
-        nbt.putBoolean("GivenMobAttackProtectionEffect", givenMobAttackProtectionEffect);
+        nbt.putBoolean(NBT_KEY_MOB_ATTACK_PROTECTION, givenMobAttackProtectionEffect);
     }
 
     @Inject(method = "readAdditionalSaveData", at = @At("HEAD"))
     private void onReadAdditionalSaveData(CompoundTag nbt, CallbackInfo info) {
-        if (nbt.contains("GivenMobAttackProtectionEffect")) {
-            givenMobAttackProtectionEffect = nbt.getBoolean("GivenMobAttackProtectionEffect");
+        if (nbt.contains(NBT_KEY_MOB_ATTACK_PROTECTION)) {
+            givenMobAttackProtectionEffect = nbt.getBoolean(NBT_KEY_MOB_ATTACK_PROTECTION);
         }
     }
 
@@ -36,5 +38,4 @@ public class PlayerPersistentDataMixin implements PlayerPersistentData {
     public void spawnGuard$setGivenMobAttackProtectionEffect(boolean givenMobAttackProtectionEffect) {
         this.givenMobAttackProtectionEffect = givenMobAttackProtectionEffect;
     }
-
 }
