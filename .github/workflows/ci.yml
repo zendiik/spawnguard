@@ -51,7 +51,6 @@ jobs:
           path: |
             fabric/build/libs/*.jar
             forge/build/libs/*.jar
-            neoforge/build/libs/*.jar
             !**/build/libs/*-sources.jar
             !**/build/libs/*-javadoc.jar
 
@@ -94,10 +93,9 @@ jobs:
         run: ./gradlew build sonar --info
 
   release:
-    name: Vytvoření releasu
+    name: Release
     runs-on: ubuntu-latest
     needs: build
-    # Tento job se spustí pouze při pushnutí tagu
     if: startsWith(github.ref, 'refs/tags/')
     steps:
       - name: Checkout repository
@@ -108,11 +106,81 @@ jobs:
         with:
           name: build-artifacts
 
+      - name: Extract changelog
+        id: changelog
+        env:
+          TAG_NAME: ${{ github.ref_name }}
+        run: |
+          CONTENT=$(awk "/^## \[?${TAG_NAME}\]?/{found=1; next} /^## /{if(found) exit} found{print}" CHANGELOG.md)
+          if [ -z "$CONTENT" ]; then
+            CONTENT="Release ${TAG_NAME}"
+          fi
+          {
+            echo 'content<<EOF'
+            echo "$CONTENT"
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Publish Fabric to CurseForge
+        uses: Kir-Antipov/mc-publish@v3
+        with:
+          curseforge-id: 1183148
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+          files: fabric/build/libs/!(*-@(sources|javadoc)).jar
+          name: SpawnGuard ${{ github.ref_name }} [Fabric]
+          version: ${{ github.ref_name }}
+          version-type: release
+          game-versions: 1.20.1
+          loaders: fabric
+          java: 17
+          changelog: ${{ steps.changelog.outputs.content }}
+
+      - name: Publish Forge to CurseForge
+        uses: Kir-Antipov/mc-publish@v3
+        with:
+          curseforge-id: 1183148
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+          files: forge/build/libs/!(*-@(sources|javadoc)).jar
+          name: SpawnGuard ${{ github.ref_name }} [Forge]
+          version: ${{ github.ref_name }}
+          version-type: release
+          game-versions: 1.20.1
+          loaders: forge
+          java: 17
+          changelog: ${{ steps.changelog.outputs.content }}
+
+      - name: Publish Fabric to Modrinth
+        uses: Kir-Antipov/mc-publish@v3
+        with:
+          modrinth-id: spawnguard
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          files: fabric/build/libs/!(*-@(sources|javadoc)).jar
+          name: SpawnGuard ${{ github.ref_name }} [Fabric]
+          version: ${{ github.ref_name }}
+          version-type: release
+          game-versions: 1.20.1
+          loaders: fabric
+          java: 17
+          changelog: ${{ steps.changelog.outputs.content }}
+
+      - name: Publish Forge to Modrinth
+        uses: Kir-Antipov/mc-publish@v3
+        with:
+          modrinth-id: spawnguard
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          files: forge/build/libs/!(*-@(sources|javadoc)).jar
+          name: SpawnGuard ${{ github.ref_name }} [Forge]
+          version: ${{ github.ref_name }}
+          version-type: release
+          game-versions: 1.20.1
+          loaders: forge
+          java: 17
+          changelog: ${{ steps.changelog.outputs.content }}
+
       - name: Vytvoření GitHub releasu
-        id: create_release
         uses: softprops/action-gh-release@v2
         with:
+          body: ${{ steps.changelog.outputs.content }}
           files: |
             fabric/build/libs/*.jar
             forge/build/libs/*.jar
-            neoforge/build/libs/*.jar

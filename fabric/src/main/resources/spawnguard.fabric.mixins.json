@@ -5,14 +5,14 @@
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "LivingEntityMixin",
+    "MobMixin",
+    "PlayerPersistentDataMixin"
   ],
   "client": [
     "MixinTitleScreen"
   ],
   "server": [
-    "LivingEntityMixin",
-    "MobMixin",
-    "PlayerPersistentDataMixin"
   ],
   "injectors": {
     "defaultRequire": 1
