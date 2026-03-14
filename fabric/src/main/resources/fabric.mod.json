@@ -1,14 +1,15 @@
 {
     "schemaVersion": 1,
-    "id": "mod_id",
-    "version": "${version}",
+    "id": "spawnguard",
+    "version": "${display_version}",
     "name": "${mod_name}",
     "description": "${description}",
     "authors": [
         "${mod_author}"
     ],
     "contact": {
-        "sources": "https://github.com/zendiik/spawnguard"
+        "sources": "https://github.com/zendiik/spawnguard",
+        "issues": "https://github.com/zendiik/spawnguard/issues"
     },
     "license": "${license}",
     "icon": "${mod_id}.png",
@@ -24,12 +25,9 @@
     ],
     "depends": {
         "fabricloader": ">=0.14",
-        "fabric": "*",
+        "fabric-api": "*",
         "minecraft": "${minecraft_version}",
-        "java": ">=17"
-    },
-    "suggests": {
-        "another-mod": "*"
+        "java": ">=${java_version}"
     }
 }
   
