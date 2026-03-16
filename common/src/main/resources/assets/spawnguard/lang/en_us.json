@@ -9,5 +9,11 @@
   "item.minecraft.lingering_potion.effect.long_mob_attack_protection": "Lingering Potion of Long Mob Attack Protection",
   "item.minecraft.tipped_arrow.effect.long_mob_attack_protection": "Tipped Arrow of Long Mob Attack Protection",
 
-  "effect.spawnguard.mob_attack_protection": "Mob Attack Protection"
+  "effect.spawnguard.mob_attack_protection": "Mob Attack Protection",
+
+  "text.autoconfig.spawnguard.title": "SpawnGuard Config",
+  "text.autoconfig.spawnguard.option.enableSpawnGuard": "Enable Spawn Guard",
+  "text.autoconfig.spawnguard.option.enableSpawnGuard.@Tooltip": "Enable or disable spawn protection for new players",
+  "text.autoconfig.spawnguard.option.mobAttackProtectionDuration": "Protection Duration",
+  "text.autoconfig.spawnguard.option.mobAttackProtectionDuration.@Tooltip": "Duration of mob attack protection in ticks (20 ticks = 1 second)"
 }
