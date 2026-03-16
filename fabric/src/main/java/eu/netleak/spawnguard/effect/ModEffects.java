@@ -5,7 +5,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffectCategory;
 
 public class ModEffects {
@@ -18,7 +18,7 @@ public class ModEffects {
             new MobAttackProtectionEffect(MobEffectCategory.BENEFICIAL, 0x98D98C));
 
     private static Holder<MobEffect> registerEffect(String name, MobEffect effect) {
-        return Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), effect);
+        return Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), effect);
     }
 
     public static void register() {

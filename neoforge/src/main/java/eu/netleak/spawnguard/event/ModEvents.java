@@ -23,9 +23,9 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void onSpawn(EntityJoinLevelEvent event) {
-        if (SpawnGuardConfig.CONFIG.enableSpawnGuard.get() && !event.getLevel().isClientSide
+        if (SpawnGuardConfig.CONFIG.enableSpawnGuard.get() && !event.getLevel().isClientSide()
                 && event.getEntity() instanceof Player player
-                && !player.getPersistentData().getBoolean("GivenMobAttackProtectionEffect")) {
+                && !player.getPersistentData().getBooleanOr("GivenMobAttackProtectionEffect", false)) {
             player.getPersistentData().putBoolean("GivenMobAttackProtectionEffect", true);
             player.addEffect(new MobEffectInstance(
                     ModEffects.MOB_ATTACK_PROTECTION_EFFECT,

@@ -3,11 +3,11 @@ plugins {
     id 'maven-publish'
 }
 
-version = "${version}-${project.name}"
-
 base {
     archivesName = "${mod_id}-${minecraft_version}"
 }
+
+version = "${version}-${project.name}"
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(java_version)
@@ -104,13 +104,11 @@ processResources {
             'description'                  : project.description,
             'neoforge_version'             : neoforge_version,
             'neoforge_loader_version_range': neoforge_loader_version_range,
-            "forge_version": forge_version,
-            "forge_loader_version_range": forge_loader_version_range,
             'credits'                      : credits,
             'java_version'                 : java_version
     ]
 
-    filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
+    filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
         expand expandProps
     }
     inputs.properties(expandProps)

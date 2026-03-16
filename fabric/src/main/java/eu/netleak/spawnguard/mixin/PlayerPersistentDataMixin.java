@@ -1,8 +1,9 @@
 package eu.netleak.spawnguard.mixin;
 
 import eu.netleak.spawnguard.data.PlayerPersistentData;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,15 +19,13 @@ public class PlayerPersistentDataMixin implements PlayerPersistentData {
     private boolean givenMobAttackProtectionEffect = false;
 
     @Inject(method = "addAdditionalSaveData", at = @At("HEAD"))
-    private void onAddAdditionalSaveData(CompoundTag nbt, CallbackInfo ci) {
-        nbt.putBoolean(NBT_KEY_MOB_ATTACK_PROTECTION, givenMobAttackProtectionEffect);
+    private void onAddAdditionalSaveData(ValueOutput output, CallbackInfo ci) {
+        output.putBoolean(NBT_KEY_MOB_ATTACK_PROTECTION, givenMobAttackProtectionEffect);
     }
 
     @Inject(method = "readAdditionalSaveData", at = @At("HEAD"))
-    private void onReadAdditionalSaveData(CompoundTag nbt, CallbackInfo info) {
-        if (nbt.contains(NBT_KEY_MOB_ATTACK_PROTECTION)) {
-            givenMobAttackProtectionEffect = nbt.getBoolean(NBT_KEY_MOB_ATTACK_PROTECTION);
-        }
+    private void onReadAdditionalSaveData(ValueInput input, CallbackInfo info) {
+        givenMobAttackProtectionEffect = input.getBooleanOr(NBT_KEY_MOB_ATTACK_PROTECTION, false);
     }
 
     @Override
