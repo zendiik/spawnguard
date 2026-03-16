@@ -1,9 +1,9 @@
 # SpawnGuard
 
-[![CurseForge Downloads](https://img.shields.io/curseforge/dt/1183148?logo=curseforge&label=CurseForge&color=F16436)](https://www.curseforge.com/minecraft/mc-mods/spawnguard)
-[![CurseForge Version](https://img.shields.io/curseforge/v/1183148?logo=curseforge&label=Latest&color=F16436)](https://www.curseforge.com/minecraft/mc-mods/spawnguard)
-[![Modrinth Downloads](https://img.shields.io/modrinth/dt/spawnguard?logo=modrinth&label=Modrinth&color=00AF5C)](https://modrinth.com/mod/spawnguard)
-[![Modrinth Version](https://img.shields.io/modrinth/v/spawnguard?logo=modrinth&label=Latest&color=00AF5C)](https://modrinth.com/mod/spawnguard)
+[![CurseForge Downloads](https://cf.way2muchnoise.eu/full_1183148_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/spawnguard)
+[![CurseForge Versions](https://cf.way2muchnoise.eu/versions/1183148.svg)](https://www.curseforge.com/minecraft/mc-mods/spawnguard)
+[![Modrinth Downloads](https://img.shields.io/modrinth/dt/spawnguard?logo=modrinth&label=downloads)](https://modrinth.com/mod/spawnguard)
+[![Modrinth Version](https://img.shields.io/modrinth/v/spawnguard?logo=modrinth&label=version)](https://modrinth.com/mod/spawnguard)
 
 **SpawnGuard** protects players from mob attacks for a configurable duration after spawning. No more dying to a creeper 10 seconds into a new world. Works on Fabric, Forge, and NeoForge.
 
