@@ -1,38 +1,70 @@
 # SpawnGuard
 
-Multiloader Minecraft mod (Fabric, Forge, NeoForge) that protects players from mob attacks for a configurable duration after spawning.
+[![CurseForge Downloads](https://img.shields.io/curseforge/dt/1183148?logo=curseforge&label=CurseForge&color=F16436)](https://www.curseforge.com/minecraft/mc-mods/spawnguard)
+[![CurseForge Version](https://img.shields.io/curseforge/v/1183148?logo=curseforge&label=Latest&color=F16436)](https://www.curseforge.com/minecraft/mc-mods/spawnguard)
+[![Modrinth Downloads](https://img.shields.io/modrinth/dt/spawnguard?logo=modrinth&label=Modrinth&color=00AF5C)](https://modrinth.com/mod/spawnguard)
+[![Modrinth Version](https://img.shields.io/modrinth/v/spawnguard?logo=modrinth&label=Latest&color=00AF5C)](https://modrinth.com/mod/spawnguard)
+
+**SpawnGuard** protects players from mob attacks for a configurable duration after spawning. No more dying to a creeper 10 seconds into a new world. Works on Fabric, Forge, and NeoForge.
 
 ## Features
 
-- **Spawn Protection** — Automatically applies a Mob Attack Protection effect when a player joins the world for the first time, preventing damage from hostile mobs.
-- **Configurable Duration** — The protection duration is fully configurable (default: 5 minutes / 6000 ticks).
-- **Potion Brewing** — Brew a Potion of Mob Attack Protection for on-demand safety:
-  - Potion of Weakness + Blaze Powder = Potion of Mob Attack Protection
-  - Potion of Mob Attack Protection + Redstone = Long Potion of Mob Attack Protection
-- **Multiloader** — Works on Fabric, Forge, and NeoForge.
+- **Spawn Protection** — Automatically applies Mob Attack Protection when a player first joins the world
+- **Configurable Duration** — Set exactly how long protection lasts (default: 5 minutes)
+- **Potion Brewing** — Brew a Potion of Mob Attack Protection for on-demand safety
+- **Multiloader** — Single mod, three loaders: Fabric, Forge, NeoForge
+
+## Brewing Recipes
+
+| Recipe | Result |
+|--------|--------|
+| Potion of Weakness + Blaze Powder | Potion of Mob Attack Protection |
+| Potion of Mob Attack Protection + Redstone | Long Potion of Mob Attack Protection |
 
 ## Configuration
 
 | Option | Default | Description |
 |--------|---------|-------------|
 | `enableSpawnGuard` | `true` | Enable or disable spawn protection |
-| `mobAttackProtectionDuration` | `6000` | Duration of protection in ticks (20 ticks = 1 second) |
+| `mobAttackProtectionDuration` | `6000` | Duration in ticks (20 ticks = 1 second) |
 
-Config file locations:
-- **Fabric**: `config/spawnguard.json5`
-- **Forge/NeoForge**: `config/spawnguard-common.toml`
+**Fabric** (`config/spawnguard.json5`):
+```json5
+{
+  "enableSpawnGuard": true,
+  "mobAttackProtectionDuration": 6000
+}
+```
+
+**Forge / NeoForge** (`config/spawnguard-common.toml`):
+```toml
+enableSpawnGuard = true
+mobAttackProtectionDuration = 6000
+```
+
+Fabric users with [ModMenu](https://modrinth.com/mod/modmenu) installed get an in-game config screen.
+
+## Installation
+
+1. Install the mod loader of your choice (Fabric, Forge, or NeoForge)
+2. Download SpawnGuard for your loader from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/spawnguard) or [Modrinth](https://modrinth.com/mod/spawnguard)
+3. Place the JAR in your `mods/` folder
+4. **Fabric only**: Requires [Fabric API](https://modrinth.com/mod/fabric-api) and [Cloth Config](https://modrinth.com/mod/cloth-config)
 
 ## Requirements
 
-| | Minecraft | Java | Loader |
-|---|-----------|------|--------|
-| Fabric | 1.21.4 | 21 | Fabric Loader >=0.14, Fabric API |
-| Forge | 1.21.4 | 21 | Forge 54+ |
-| NeoForge | 1.21.4 | 21 | NeoForge 21.4+ |
+- **Minecraft**: 1.21.4
+- **Java**: 21
+- **Fabric**: Fabric Loader + Fabric API + Cloth Config
+- **Forge**: Forge 54+
+- **NeoForge**: NeoForge 21.4+
 
-## Download
+## Links
 
-- [GitHub Releases](https://github.com/zendiik/spawnguard/releases)
+- [CurseForge](https://www.curseforge.com/minecraft/mc-mods/spawnguard)
+- [Modrinth](https://modrinth.com/mod/spawnguard)
+- [GitHub](https://github.com/zendiik/spawnguard)
+- [Issues](https://github.com/zendiik/spawnguard/issues)
 
 ## Building from Source
 
