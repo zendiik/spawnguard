@@ -17,6 +17,9 @@
     "entrypoints": {
         "main": [
           "eu.netleak.spawnguard.SpawnGuard"
+        ],
+        "modmenu": [
+          "eu.netleak.spawnguard.SpawnGuard"
         ]
     },
     "mixins": [

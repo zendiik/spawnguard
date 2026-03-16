@@ -1,9 +1,47 @@
-## SpawnGuard
+# SpawnGuard
 
-SpawnGuard is a mod designed to give players a grace period from mob attacks right after they spawn. Perfect for survival or challenge-based modpacks.
+Multiloader Minecraft mod (Fabric, Forge, NeoForge) that protects players from mob attacks for a configurable duration after spawning.
 
-This mod allows players to safely settle into their world without the fear of being overwhelmed by hostile mobs. This mod works by applying a temporary effect that shields the player from damage, giving them time to gather resources and build defenses before facing the dangers of the world.
+## Features
 
-Also, there is the possibility of brewing a Potion of Mob Attack Protection that confers the same protection, allowing players to extend their safety beyond the initial spawn.
+- **Spawn Protection** — Automatically applies a Mob Attack Protection effect when a player joins the world for the first time, preventing damage from hostile mobs.
+- **Configurable Duration** — The protection duration is fully configurable (default: 5 minutes / 6000 ticks).
+- **Potion Brewing** — Brew a Potion of Mob Attack Protection for on-demand safety:
+  - Potion of Weakness + Blaze Powder = Potion of Mob Attack Protection
+  - Potion of Mob Attack Protection + Redstone = Long Potion of Mob Attack Protection
+- **Multiloader** — Works on Fabric, Forge, and NeoForge.
 
-Whether it's a hardcore world or a custom scenario where initial safety is crucial, SpawnGuard makes for a smoother and more enjoyable experience right from the start.
+## Configuration
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enableSpawnGuard` | `true` | Enable or disable spawn protection |
+| `mobAttackProtectionDuration` | `6000` | Duration of protection in ticks (20 ticks = 1 second) |
+
+Config file locations:
+- **Fabric**: `config/spawnguard.json5`
+- **Forge/NeoForge**: `config/spawnguard-common.toml`
+
+## Requirements
+
+| | Minecraft | Java | Loader |
+|---|-----------|------|--------|
+| Fabric | 1.21.4 | 21 | Fabric Loader >=0.14, Fabric API |
+| Forge | 1.21.4 | 21 | Forge 54+ |
+| NeoForge | 1.21.4 | 21 | NeoForge 21.4+ |
+
+## Download
+
+- [GitHub Releases](https://github.com/zendiik/spawnguard/releases)
+
+## Building from Source
+
+```bash
+./gradlew clean build
+```
+
+JARs will be in `fabric/build/libs/`, `forge/build/libs/`, `neoforge/build/libs/`.
+
+## License
+
+GNU LGPL 3.0

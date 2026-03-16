@@ -19,7 +19,7 @@ public class ModEntityEvents {
 
     public static void register() {
         ServerEntityEvents.ENTITY_LOAD.register((Entity entity, ServerLevel world) -> {
-            if (SpawnGuard.CONFIG.enableSpawnGuard()
+            if (SpawnGuard.CONFIG.enableSpawnGuard
                     && entity instanceof Player player
                     && player instanceof PlayerPersistentData persistentData
                     && !persistentData.spawnGuard$hasGivenMobAttackProtectionEffect()) {
@@ -27,7 +27,7 @@ public class ModEntityEvents {
 
                 player.addEffect(new MobEffectInstance(
                         ModEffects.MOB_ATTACK_PROTECTION_EFFECT,
-                        SpawnGuard.CONFIG.mobAttackProtectionDuration(),
+                        SpawnGuard.CONFIG.mobAttackProtectionDuration,
                         0, false, false, true
                 ));
             }

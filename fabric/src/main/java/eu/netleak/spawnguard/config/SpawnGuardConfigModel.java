@@ -1,12 +1,16 @@
 package eu.netleak.spawnguard.config;
 
-import io.wispforest.owo.config.annotation.Config;
+import me.shedaniel.autoconfig.ConfigData;
+import me.shedaniel.autoconfig.annotation.Config;
+import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
-@Config(name = "spawnguard-config", wrapperName = "SpawnGuardConfig")
-public class SpawnGuardConfigModel {
+@Config(name = "spawnguard")
+public class SpawnGuardConfigModel implements ConfigData {
 
+    @ConfigEntry.Gui.Tooltip
     public boolean enableSpawnGuard = true;
 
+    @ConfigEntry.Gui.Tooltip
     public int mobAttackProtectionDuration = 6000;
 
 }
