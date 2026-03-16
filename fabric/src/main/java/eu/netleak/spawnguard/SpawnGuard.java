@@ -46,6 +46,8 @@ public class SpawnGuard implements ModInitializer, ModMenuApi {
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return parent -> AutoConfig.getConfigScreen(SpawnGuardConfigModel.class, parent).get();
+        @SuppressWarnings("removal")
+        ConfigScreenFactory<?> factory = parent -> AutoConfig.getConfigScreen(SpawnGuardConfigModel.class, parent).get();
+        return factory;
     }
 }
