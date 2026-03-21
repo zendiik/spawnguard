@@ -7,7 +7,7 @@
 *   **Automatic Spawn Protection** — Every new player gets a Mob Attack Protection effect the moment they join the world
 *   **Fully Configurable** — Set the protection duration to whatever fits your server or playstyle
 *   **Brewable Potions** — Craft your own protection on demand with the Potion of Mob Attack Protection
-*   **Multiloader** — Works on **Fabric**, **Forge**, and **NeoForge**
+*   **Multiloader** — Works on **Fabric** and **NeoForge** (Forge supported up to 1.21.4)
 *   **ModMenu Support** — Fabric users get an in-game config screen via ModMenu
 
 ## 🧪 Brewing Recipes
@@ -28,7 +28,7 @@
 }
 ```
 
-**Forge / NeoForge** (`config/spawnguard-common.toml`):
+**NeoForge** (`config/spawnguard-common.toml`):
 
 ```
 enableSpawnGuard = true
@@ -43,8 +43,8 @@ mobAttackProtectionDuration = 6000
 | Loader   |Required Dependencies    |
 | -------- |------------------------ |
 | Fabric   |Fabric API, Cloth Config |
-| Forge    |—                        |
 | NeoForge |—                        |
+| Forge    |— *(up to 1.21.4 only)*  |
 
 ## 🔗 Links
 
