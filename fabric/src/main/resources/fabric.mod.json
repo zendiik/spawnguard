@@ -19,7 +19,7 @@
           "eu.netleak.spawnguard.SpawnGuard"
         ],
         "modmenu": [
-          "eu.netleak.spawnguard.SpawnGuard"
+          "eu.netleak.spawnguard.integration.ModMenuIntegration"
         ]
     },
     "mixins": [
