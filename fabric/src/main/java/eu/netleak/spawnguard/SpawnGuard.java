@@ -1,7 +1,5 @@
 package eu.netleak.spawnguard;
 
-import com.terraformersmc.modmenu.api.ConfigScreenFactory;
-import com.terraformersmc.modmenu.api.ModMenuApi;
 import eu.netleak.spawnguard.config.SpawnGuardConfigModel;
 import eu.netleak.spawnguard.effect.ModEffects;
 import eu.netleak.spawnguard.event.ModEntityEvents;
@@ -14,7 +12,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 
-public class SpawnGuard implements ModInitializer, ModMenuApi {
+public class SpawnGuard implements ModInitializer {
 
     public static SpawnGuardConfigModel CONFIG;
 
@@ -42,10 +40,5 @@ public class SpawnGuard implements ModInitializer, ModMenuApi {
         });
 
         CommonClass.init();
-    }
-
-    @Override
-    public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return parent -> AutoConfig.getConfigScreen(SpawnGuardConfigModel.class, parent).get();
     }
 }

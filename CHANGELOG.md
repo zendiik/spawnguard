@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.2] - 2026-05-02
+
+### Fixed
+
+- Fabric: dedicated server crash on startup caused by `SpawnGuard` implementing `ModMenuApi` directly. ModMenu integration moved to a separate client-only class (#7).
+
 ## [1.1.0] - 2026-03-16
 
 ### Changed
