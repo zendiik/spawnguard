@@ -83,3 +83,7 @@ SpawnGuard is licensed under the [GNU LGPL 3.0](LICENSE).
 ## Credits
 
 Created by [Netleak](https://github.com/netleak)
+
+## Support
+
+If you enjoy the mod, you can support development: [☕ Ko-fi](https://ko-fi.com/netleak)
