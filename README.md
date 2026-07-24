@@ -65,6 +65,7 @@ Fabric users with [ModMenu](https://modrinth.com/mod/modmenu) installed get an i
 - [Modrinth](https://modrinth.com/mod/spawnguard)
 - [GitHub](https://github.com/zendiik/spawnguard)
 - [Issues](https://github.com/zendiik/spawnguard/issues)
+- [☕ Support / Donate](https://ko-fi.com/netleak)
 
 ## Building from Source
 
