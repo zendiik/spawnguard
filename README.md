@@ -62,7 +62,7 @@ Available options:
 
 ```bash
 # Clone the repository
-git clone https://github.com/netleak/spawnguard.git
+git clone https://github.com/zendiik/spawnguard.git
 cd spawnguard
 
 # Build all loaders
@@ -82,7 +82,7 @@ SpawnGuard is licensed under the [GNU LGPL 3.0](LICENSE).
 
 ## Credits
 
-Created by [Netleak](https://github.com/netleak)
+Created by [Netleak](https://github.com/zendiik)
 
 ## Support
 
