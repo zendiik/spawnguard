@@ -7,3 +7,7 @@ This mod allows players to safely settle into their world without the fear of be
 Also, there is the possibility of brewing a Potion of Mob Attack Protection that confers the same protection, allowing players to extend their safety beyond the initial spawn.
 
 Whether it's a hardcore world or a custom scenario where initial safety is crucial, SpawnGuard makes for a smoother and more enjoyable experience right from the start.
+
+## Support
+
+If you enjoy the mod, you can support development: [☕ Ko-fi](https://ko-fi.com/netleak)
